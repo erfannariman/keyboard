@@ -20,14 +20,14 @@ def calculate_which_half(low, high, x):
         return False
 
 
-def run_keyboard(min_time, max_time):
+def run_keyboard():
     """
     :param min_time: minimum amount of time interval between keyboard or mouse action
     :param max_time: minimum amount of time interval between keyboard or mouse action
     :return: None
     """
     keyboard = KeyboardController()
-    choices = [Key.shift, Key.up, Key.down, Key.left, Key.right, Key.caps_lock,Key.ctrl]
+    choices = [Key.shift, Key.up, Key.down, Key.left, Key.right, Key.caps_lock, Key.ctrl]
 
     key_stroke = choice(choices)
 
@@ -37,7 +37,9 @@ def run_keyboard(min_time, max_time):
 
 
 def move_mouse():
-
+    """
+    :return: None, moves the mouse relative to current position
+    """
     mouse = MouseController()
 
     # choose random x and y position to move mouse to
@@ -49,13 +51,18 @@ def move_mouse():
 
 
 def do_key_stroke(min_time, max_time):
-
+    """
+    Main function which exectues the keyboard strokes or mouse movement
+    :param min_time: lower boundary of time interval
+    :param max_time: higher boundary of time interval
+    :return: None
+    """
     while True:
         t_interval = randint(min_time, max_time)
         which_half = calculate_which_half(min_time, max_time, t_interval)
 
         if which_half:
-            run_keyboard(min_time, max_time)
+            run_keyboard()
         else:
             move_mouse()
 
