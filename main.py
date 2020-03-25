@@ -22,8 +22,7 @@ def calculate_which_half(low, high, x):
 
 def run_keyboard():
     """
-    :param min_time: minimum amount of time interval between keyboard or mouse action
-    :param max_time: minimum amount of time interval between keyboard or mouse action
+    Performs a random key stroke based on random.choice which is a Uniform distribution
     :return: None
     """
     keyboard = KeyboardController()
@@ -52,7 +51,7 @@ def move_mouse():
 
 def do_key_stroke(min_time, max_time):
     """
-    Main function which exectues the keyboard strokes or mouse movement
+    Main function which executes the keyboard strokes or mouse movement
     :param min_time: lower boundary of time interval
     :param max_time: higher boundary of time interval
     :return: None
@@ -72,4 +71,4 @@ def do_key_stroke(min_time, max_time):
 
 if __name__ == '__main__':
     print('keyboard.py is running, to stop this script, press CTRL + C')
-    do_key_stroke(0, 20)
+    do_key_stroke(0, 5)
