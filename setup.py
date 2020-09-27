@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-requirements = ["pynput>=1.6.8"]
+requirements = ["pynput>=1.7.1"]
 
 setuptools.setup(
     name="keyboard",  # Replace with your own username
@@ -19,7 +19,7 @@ setuptools.setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "keyboard=main.keyboard:run"
+            "keyboard=src.keyboard:run"
         ]
     },
     classifiers=[
