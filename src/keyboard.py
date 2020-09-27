@@ -90,11 +90,13 @@ def getargs(argv=None):
     return parser.parse_args(argv)
 
 
-def run():
+def do_keyboard(min_time=None, max_time=None):
     arg_vals = None
     args = getargs(arg_vals)
-    min_time = args.min_time
-    max_time = args.max_time
+    if not min_time:
+        min_time = args.min_time
+    if not max_time:
+        max_time = args.max_time
     logging.info('keyboard.py is running, to stop this script, press CTRL + C')
     do_key_stroke(min_time, max_time)
 
@@ -105,4 +107,4 @@ if __name__ == '__main__':
         datefmt='%Y-%m-%d %H:%M:%S',
         level=logging.INFO
     )
-    run()
+    do_keyboard()
