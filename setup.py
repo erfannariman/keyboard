@@ -7,7 +7,7 @@ requirements = ["pynput>=1.7.1"]
 
 setup(
     name="keyboard",
-    version="0.0.22",
+    version="0.0.23",
     author="Erfan Nariman",
     author_email="erfannariman@gmail.com",
     description="Module to do random keystroaks or mouse movements "
