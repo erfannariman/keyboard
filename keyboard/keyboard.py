@@ -6,6 +6,12 @@ import logging
 from pynput.keyboard import Key, Controller as KeyboardController
 from pynput.mouse import Controller as MouseController
 
+logging.basicConfig(
+    format='%(asctime)s.%(msecs)03d [%(levelname)-5s] [%(name)s] - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    level=logging.INFO
+)
+
 
 def calculate_which_half(low, high, x):
     """
@@ -98,6 +104,7 @@ def do_keyboard(min_time=None, max_time=None):
     if not max_time:
         max_time = args.max_time
     logging.info('keyboard.py is running, to stop this script, press CTRL + C')
+    print('keyboard.py is running, to stop this script, press CTRL + C')
     do_key_stroke(min_time, max_time)
 
 
