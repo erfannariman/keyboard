@@ -1,21 +1,21 @@
-import setuptools
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 requirements = ["pynput>=1.7.1"]
 
-setuptools.setup(
-    name="keyboard",  # Replace with your own username
-    version="0.0.12",
+setup(
+    name="keyboard",
+    version="0.0.2",
     author="Erfan Nariman",
-    author_email="erfan.nariman@briccanalytics.nl",
+    author_email="erfannariman@gmail.com",
     description="Module to do random keystroaks or mouse movements "
                 "to prevent your laptop going to sleep",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/erfannariman/keyboard",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     install_requires=requirements,
     entry_points={
         "console_scripts": [
