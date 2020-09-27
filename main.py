@@ -1,7 +1,10 @@
-from pynput.keyboard import Key, Controller as KeyboardController
-from pynput.mouse import Button, Controller as MouseController
-from random import choice, randint
+import argparse
 import time
+from random import choice, randint
+import logging
+
+from pynput.keyboard import Key, Controller as KeyboardController
+from pynput.mouse import Controller as MouseController
 
 
 def calculate_which_half(low, high, x):
@@ -32,7 +35,7 @@ def run_keyboard():
 
     keyboard.press(key_stroke)
     keyboard.release(key_stroke)
-    print(f'Pressed {str(key_stroke).split(".")[1]}')
+    logging.info(f'Pressed {str(key_stroke).split(".")[1]}')
 
 
 def move_mouse():
@@ -46,14 +49,14 @@ def move_mouse():
     y = randint(-30, 30)
 
     mouse.move(x, y)
-    print(f'Moved mouse relative to current position {x, y}')
+    logging.info(f'Moved mouse relative to current position {x, y}')
 
 
 def do_key_stroke(min_time, max_time):
     """
     Main function which executes the keyboard strokes or mouse movement
     :param min_time: lower boundary of time interval
-    :param max_time: higher boundary of time interval
+    :param max_time: upper boundary of time interval
     :return: None
     """
     while True:
@@ -65,10 +68,41 @@ def do_key_stroke(min_time, max_time):
         else:
             move_mouse()
 
-        print(f'Waiting {t_interval} seconds')
+        logging.info(f'Waiting {t_interval} seconds')
         time.sleep(t_interval)
 
 
+def getargs(argv=None):
+    parser = argparse.ArgumentParser(description='Process the time interval')
+    parser.add_argument(
+        "--min_time",
+        dest="min_time",
+        type=int,
+        help="lower boundary of time interval",
+    )
+    parser.add_argument(
+        "--max_time",
+        dest="max_time",
+        type=int,
+        help="upper boundary of time interval",
+    )
+
+    return parser.parse_args(argv)
+
+
+def run():
+    arg_vals = None
+    args = getargs(arg_vals)
+    min_time = args.min_time
+    max_time = args.max_time
+    logging.info('keyboard.py is running, to stop this script, press CTRL + C')
+    do_key_stroke(min_time, max_time)
+
+
 if __name__ == '__main__':
-    print('keyboard.py is running, to stop this script, press CTRL + C')
-    do_key_stroke(0, 5)
+    logging.basicConfig(
+        format='%(asctime)s.%(msecs)03d [%(levelname)-5s] [%(name)s] - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S',
+        level=logging.INFO
+    )
+    run()
